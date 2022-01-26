@@ -229,7 +229,8 @@ public:
     // we need to chose how much to scale our dominant dimension, based on the
     // maximum length of the line
     double dist = sqrt((x0 - x1) * (x0 - x1) + (y0 - y1) * (y0 - y1) + (z0 - z1) * (z0 - z1));
-    if ((unsigned int)(dist) < min_length) {
+    auto dist_uint = (unsigned int)(dist);
+    if (dist_uint < min_length || dist_uint == 0) {
       return;
     }
     double scale = std::min(1.0, max_length / dist);
